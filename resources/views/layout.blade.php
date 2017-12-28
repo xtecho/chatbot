@@ -8,6 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="">
         <meta name="author" content="">
+        <meta name="csrf-token" content="{{ csrf_token() }}" />
 
         <link rel="shortcut icon" href="{{ asset('img/robot.png') }}" />
         <title>Chat Bot</title>
@@ -57,25 +58,6 @@
                     <a href="{{ route('login') }}" class="login">Login</a>
                     <a href="{{ route('register') }}" class="register">Register</a>
                 </div>
-
-                <div class="flex-center full-height row">
-                    <div class="content_homepage">
-                        <img src="{{ asset('img/robot.png') }}" style="width:50%">
-                        <form action="{{ route('add-answer') }}" method="post">
-                            {{ csrf_field() }}
-                            <div class="square col-12">
-                                <div class="typewriter">
-                                    <h1>Welcome human, how are you today?</h1>
-                                </div>
-                                <div class="answear_input" id="answear_appearance">
-                                    <input type="text" name="answers" placeholder="Type your answear here...">
-                                    <button type="submit" name="send" class="btn btn-info homepage_send_button">Send</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-
                 @else
 
                 <ul class="nav navbar-top-links navbar-right">
