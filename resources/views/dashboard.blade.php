@@ -13,13 +13,13 @@
     <a href="{{ route('register') }}" class="register">Register</a>
 </div>-->
 
-<div class="flex-center full-height row">
+<div class="flex-center full-height col-lg-12 col-xs-12">
     <div class="content_homepage">
-        <img src="{{ asset('img/robot.png') }}" style="width:50%">
+        <img src="{{ asset('img/robot.png') }}" class="robot_img">
         {!! Form::open(['id' => 'chatbot-form']) !!}
-        <div class="square col-12">
+        <div class="square col-lg-12 col-xs-12">
             <div class="typewriter">
-                <h1>Welcome human, how are you today?</h1>
+                <h1>Welcome human, how are you today?<span>|</span></h1>
             </div>
             <div class="answear_input" id="answear_appearance">
                 {!! Form::hidden('question_id', 1, ['id' => 'question_id']) !!}

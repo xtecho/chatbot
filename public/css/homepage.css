@@ -15,9 +15,9 @@ html, body {
     font-weight: 100;
 }
 
-.full-height {
+/*.full-height {
     height: 96.9vh;
-}
+}*/
 
 .flex-center {
     display: flex;
@@ -58,30 +58,31 @@ button#back-button{
 }
 
 
-/* DEMO-SPECIFIC STYLES */
+/* DEMO-SPECIFIC STYLES 
 .typewriter h1 {
+    width: 100%;
     color: #636b6f;
-    overflow: hidden; /* Ensures the content is not revealed until the animation */
-    border-right: .15em solid orange; /* The typwriter cursor */
-    white-space: nowrap; /* Keeps the content on a single line */
-    margin: 0 auto; /* Gives that scrolling effect as the typing happens */
-    letter-spacing: .15em; /* Adjust as needed */
+    overflow: hidden;  Ensures the content is not revealed until the animation 
+    border-right: .15em solid orange;  The typwriter cursor 
+    white-space: nowrap;  Keeps the content on a single line 
+    margin: 0 auto;  Gives that scrolling effect as the typing happens 
+    letter-spacing: .15em;  Adjust as needed 
     animation: 
         typing 4s steps(80, end),
         blink-caret .5s step-end infinite;
 }
 
-/* The typing effect */
+ The typing effect 
 @keyframes typing {
     from { width: 0 }
     to { width: 100% }
 }
 
-/* The typewriter cursor effect */
+ The typewriter cursor effect 
 @keyframes blink-caret {
     from, to { border-color: transparent }
     50% { border-color: orange }
-}
+}*/
 
 a.navbar-brand.logo-title{
     font-size: 25px;
@@ -89,7 +90,7 @@ a.navbar-brand.logo-title{
 
 .answear_input input[type="text"] {
     width: 700px;
-    height: 35px;
+    height: auto;
     margin-top: 10px;
     padding-left: 10px;
     text-align: initial!important;
@@ -102,9 +103,9 @@ a.navbar-brand.logo-title{
     text-align: center;
 }
 
-.answear_input {
+/*.answear_input {
     text-align: left;
-}
+}*/
 
 .typewriter{
     margin-top: 30px;
@@ -118,8 +119,8 @@ a.navbar-brand.logo-title{
 .homepage_send_button{
     height: 40px;
     font-size: 16px;
-    margin-bottom: 6px;
-    margin-left: 10px;
+    margin-bottom: 5px;
+    margin-left: 5px;
     text-align: initial!important;
 }
 
@@ -128,3 +129,44 @@ a.navbar-brand.logo-title{
     visibility:hidden;
 }
 
+.pull-center{
+    margin-top: 35px;
+}
+
+.typewriter h1{
+    width: 100%!important;
+    color: #636b6f; 
+    margin: 0 auto;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 18em;
+    animation: type 4s steps(80, end); 
+}
+
+span{
+    color: #5BC0DE;
+    animation: blink 0.8s infinite;
+    margin-bottom: 5px;
+    font-size: 42px;
+}
+
+@keyframes type{ 
+    from { width: 0; } 
+} 
+
+@keyframes type2{
+    0%{width: 0;}
+    50%{width: 0;}
+    100%{ width: 100; } 
+} 
+
+@keyframes blink{
+    to{opacity: .0;}
+}
+
+.robot_img{
+    width: 320px;
+    height: auto;
+    margin: auto;
+    padding: auto;
+}
