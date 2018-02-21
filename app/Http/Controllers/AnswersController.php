@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Answer;
 use App\Question;
+use App\Keyword;
+use JanDrda\LaravelGoogleCustomSearchEngine\LaravelGoogleCustomSearchEngine;
 
 class AnswersController extends Controller {
 
@@ -22,11 +24,27 @@ class AnswersController extends Controller {
             if (empty($request->input('answer_teach'))) {
                 $params = array();
                 $params['question'] = $request->input('answer');
+
                 $question = Question::firstOrCreate($params);
 
                 if (!empty($question)) {
                     $answers = $question->answers;
                     $answer = $answers->isEmpty() ? null : $answers->random();
+
+                    if (empty($answer)) {
+                        $keywords = Keyword::all()->pluck('name');
+                        foreach ($keywords as $keyword) {
+                            if (strpos(strtolower($params['question']), $keyword) !== false) {
+                                $seachEngine = new LaravelGoogleCustomSearchEngine();
+                                $results = $seachEngine->getResults($params['question'], ['num' => 1]);
+                                //todo: swearing word to do
+                                $answer = new Answer;
+                                $answer->answer = explode('. ', $results[0]->htmlSnippet)[0] . '.';
+                                $answer->question_id = $question->id;
+                                $answer->save();
+                            }
+                        }
+                    }
                 }
 
                 return json_encode(['answer' => $answer, 'question' => $question]);
