@@ -39,7 +39,7 @@ class AnswersController extends Controller {
                                 $results = $seachEngine->getResults($params['question'], ['num' => 1]);
                                 //todo: swearing word to do
                                 $answer = new Answer;
-                                $answer->answer = $results[0]->htmlSnippet;
+                                $answer->answer = explode('. ', $results[0]->htmlSnippet)[0] . '. ' . explode('. ', $results[0]->htmlSnippet)[1] . '.';
                                 $answer->question_id = $question->id;
                                 $answer->save();
                             }

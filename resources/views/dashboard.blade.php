@@ -19,7 +19,7 @@
         {!! Form::open(['id' => 'chatbot-form']) !!}
         <div class="square col-lg-12 col-xs-12">
             <div class="typewriter">
-                <h1>Welcome human, how are you today?<span>|</span></h1>
+                <h1>Welcome human, how are you today?<span class="write">|</span></h1>
             </div>
             <div class="answear_input" id="answear_appearance">
                 {!! Form::hidden('question_id', 1, ['id' => 'question_id']) !!}

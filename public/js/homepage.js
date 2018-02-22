@@ -30,7 +30,7 @@ $('#chatbot-form').submit(function (e) {
                     question_square.find('input#answer-input').attr('disabled', true);
                     question_square.find('button#submit-btn')[0].style.display = "none";
 
-                    var html = "<div class='typewriter'><h1>I don't know... Teach me master!<span>|</span></h1></div>";
+                    var html = "<div class='typewriter'><h1>I don't know... Teach me master!<span class='write'>|</span></h1></div>";
                     question_square.append(html);
 
                     setTimeout(function () {
@@ -49,7 +49,7 @@ $('#chatbot-form').submit(function (e) {
                         question_square.find('input#answer_teach').attr('disabled', true);
                         question_square.find('button#submit-btn')[1].style.display = "none";
 
-                        var html = "<div class='typewriter'><h1>Thank you for your support!<span>|</span></h1></div>";
+                        var html = "<div class='typewriter'><h1>Thank you for your support!<span class='write'>|</span></h1></div>";
                         question_square.append(html);
                     }
 
@@ -78,7 +78,7 @@ $('#chatbot-form').submit(function (e) {
                     question_square.find('input#type')[0].value = "question";
 
                     question_square.animate({"opacity": "1"}, 500, function () {
-                        var html = "<div class='typewriter'><h1>You can ask me 3 questions. Go for it!<span>|</span></h1></div>";
+                        var html = "<div class='typewriter'><h1>You can ask me 3 questions. Go for it!<span class='write'>|</span></h1></div>";
                         question_square.prepend(html);
 
                         setTimeout(function () {

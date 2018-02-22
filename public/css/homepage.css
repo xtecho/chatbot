@@ -143,7 +143,7 @@ a.navbar-brand.logo-title{
     animation: type 4s steps(80, end); 
 }
 
-span{
+.write{
     color: #5BC0DE;
     animation: blink 0.8s infinite;
     margin-bottom: 5px;
