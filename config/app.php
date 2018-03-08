@@ -155,6 +155,7 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         
         JanDrda\LaravelGoogleCustomSearchEngine\LaravelGoogleCustomSearchEngineProvider::class,
+        Gmopx\LaravelOWM\LaravelOWMServiceProvider::class,
     ],
     /*
       |--------------------------------------------------------------------------
