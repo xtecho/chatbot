@@ -6,8 +6,11 @@ use Illuminate\Http\Request;
 use App\Answer;
 use App\Question;
 use App\Keyword;
+use App\Badword;
 use JanDrda\LaravelGoogleCustomSearchEngine\LaravelGoogleCustomSearchEngine;
 use Gmopx\LaravelOWM\LaravelOWM;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Auth;
 
 class AnswersController extends Controller {
 
@@ -22,21 +25,35 @@ class AnswersController extends Controller {
 
             return json_encode(['answer' => $answer, 'question' => $answer->question]);
         } else {
-            $questions = session('questions');
-            if(empty($questions)) {
-                session('questions', 1);
-                $questions = 1;
-            } else {
-                session('questions', $questions++);
-            }
-            if($questions>4){
-                return redirect('login');
-            }
             if (empty($request->input('answer_teach'))) {
+                if (Auth::guest()) {
+                    $questions = Session::get('questions');
+                    if (empty($questions)) {
+                        Session::put('questions', 1);
+                        $questions = 1;
+                    } else {
+                        Session::put('questions', ++$questions);
+                    }
+                    Session::save();
+                    if ($questions > 3) {
+                        return json_encode(['redirect' => true]);
+                    }
+                }
                 $params = array();
                 $params['question'] = $request->input('answer');
 
                 $question = Question::firstOrCreate($params);
+
+                $badwords = Badword::all()->pluck('word');
+                foreach ($badwords as $badword) {
+                    if (strpos(strtolower($params['question']), $badword) !== false) {
+                        $answer = new Answer;
+                        $answer->answer = "That is a bad word... I don't like bad words :(";
+                        $answer->question_id = $question->id;
+
+                        return json_encode(['answer' => $answer, 'question' => $question]);
+                    }
+                }
 
                 if (!empty($question)) {
                     $answers = $question->answers;
@@ -47,15 +64,15 @@ class AnswersController extends Controller {
                             $words = explode(' ', strtolower($params['question']));
                             $country = '';
                             foreach ($words as $key => $word) {
-                                if($word == 'weather') {
-                                    if ($words[$key+1] == 'in') {
-                                        $country = explode('?', $words[$key+2])[0];
+                                if ($word == 'weather') {
+                                    if ($words[$key + 1] == 'in') {
+                                        $country = explode('?', $words[$key + 2])[0];
                                     } else {
-                                        $country = explode('?', $words[$key+1])[0];
+                                        $country = explode('?', $words[$key + 1])[0];
                                     }
                                 }
                             }
-                            
+
                             $lowm = new LaravelOWM();
                             $current_weather = $lowm->getCurrentWeather($country);
 

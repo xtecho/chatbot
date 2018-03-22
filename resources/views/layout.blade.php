@@ -296,6 +296,7 @@
 
         <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
         <script src="{{ asset('js/homepage.js') }}"></script>
+        <script src="{{ asset('js/chat.js') }}"></script>
 
 
     </body>

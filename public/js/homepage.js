@@ -6,8 +6,10 @@
 
 
 setTimeout(function () {
-    $("#answear_appearance").delay(1000).animate({"opacity": "1"}, 1200);
-    document.getElementById('answear_appearance').style.visibility = "visible";
+    if ($("#answear_appearance").length) {
+        $("#answear_appearance").delay(1000).animate({"opacity": "1"}, 1200);
+        document.getElementById('answear_appearance').style.visibility = "visible";
+    }
 }, 3300);
 
 $('#chatbot-form').submit(function (e) {
@@ -23,6 +25,9 @@ $('#chatbot-form').submit(function (e) {
         processData: false,
         dataType: 'json',
         success: function (response) {
+            if (response['redirect'] === true) {
+                location.replace('/login');
+            }
             var question_square = $("#chatbot-form .square");
             if (question_square.find('input#type')[0].value == "question") {
                 question_square.find('input#question_id')[0].value = response['question'].id;
