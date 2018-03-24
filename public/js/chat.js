@@ -7,6 +7,26 @@
 $('#chat-form').submit(function (e) {
     e.preventDefault();
 
+    function changeSource0() {
+        var image = document.querySelectorAll("img")[0];
+        var source = image.src = image.src.replace("robot-status-ok.png", "robot-status-wrong.png");     //replace robot emotions images
+    }
+    
+    function changeSource1() {
+        var image = document.querySelectorAll("img")[0];
+        var source = image.src = image.src.replace("robot-status-wrong.png", "robot-status-happy.png");     //replace robot emotions images
+    }
+    
+    function changeSource2() {
+        var image = document.querySelectorAll("img")[0];
+        var source = image.src = image.src.replace("robot-status-wrong.png", "robot-status-happy.png");     //replace robot emotions images
+    }
+    
+    function changeSource3() {
+        var image = document.querySelectorAll("img")[0];
+        var source = image.src = image.src.replace("robot-status-ok.png", "robot-status-angry.png");     //replace robot emotions images
+    }
+
     var question = $(this).find('input#question')[0].value;
 
     if (question.length) {
@@ -39,8 +59,10 @@ $('#chat-form').submit(function (e) {
                 setTimeout(function () {
                     if (response['answer'] !== null) {
                         right.find('.message')[0].innerHTML = response['answer'].answer;
+                        changeSource1();
                     } else {
                         right.find('.message')[0].innerHTML = "I don't know...";
+                        changeSource0();
                     }
                     right.find('.time').parent()[0].style = 'visibility: visible';
                     right.find('.time')[0].innerHTML = new Date().toLocaleTimeString();

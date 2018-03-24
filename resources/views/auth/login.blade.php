@@ -9,8 +9,8 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <link rel="shortcut icon" href="{{ asset('img/robot.png') }}" />
-        <title>Chat Bot</title>
+        <link rel="shortcut icon" href="{{ asset('img/robot-avatar.png') }}" />
+        <title>TechBot</title>
 
         <!-- Bootstrap Core CSS -->
         <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
@@ -33,11 +33,18 @@
 
     <body>
 
-        <div class="col-lg-12">
-            <button type="submit" class="btn btn-primary" id="back-button">
-                <a href="{{ route('dashboard') }}" style="color:white;">Back</a>
-            </button>
+        <div class="img_login">
+            <a href="{{ route('dashboard') }}" style="color:white;">
+                <button type="submit" class="btn btn-primary" id="back-button">
+                    Back
+                </button>
+            </a>
+            <div class="robot_img_login">
+                <img src="{{ asset('img/robot-status-ok.png') }}" style="width: 10%;">
+            </div>
         </div>
+
+
 
         <div class="container">
             <div class="row">
@@ -88,13 +95,18 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <div class="col-md-8 col-md-offset-4">
+                                    <div class="col-md-6 col-md-offset-4">
                                         <button type="submit" class="btn btn-primary">
                                             Login
                                         </button>
 
                                         <a class="btn btn-link" href="{{ route('password.request') }}">
                                             Forgot Your Password?
+                                        </a>
+                                    </div>
+                                    <div class="col-md-offset-4" >
+                                        <a class="btn btn-link" style="margin-top: 10px;" href="{{ route('register') }}">
+                                            Don't have an account yet? Register now!
                                         </a>
                                     </div>
                                 </div>

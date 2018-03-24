@@ -9,8 +9,8 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <link rel="shortcut icon" href="{{ asset('img/robot.png') }}" />
-        <title>Chat Bot</title>
+        <link rel="shortcut icon" href="{{ asset('img/robot-avatar.png') }}" />
+        <title>TechBot</title>
 
         <!-- Bootstrap Core CSS -->
         <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
@@ -33,10 +33,15 @@
 
     <body>
 
-        <div class="col-lg-12">
-            <button type="submit" class="btn btn-primary" id="back-button">
-                <a href="{{ route('dashboard') }}" style="color:white;">Back</a>
-            </button>
+        <div class="img_login">
+            <a href="{{ route('dashboard') }}" style="color:white;">
+                <button type="submit" class="btn btn-primary" id="back-button">
+                    Back
+                </button>
+            </a>
+            <div class="robot_img_login">
+                <img src="{{ asset('img/robot-status-happy.png') }}" style="width: 9.5%;">
+            </div>
         </div>
 
         <div class="container">
@@ -105,7 +110,11 @@
                                             Register
                                         </button>
                                     </div>
-                                </div>
+                                    <div class="col-md-offset-4">
+                                        <a class="btn btn-link" style="margin-top: 10px;" href="{{ route('login') }}">
+                                            Already registered? Login here!
+                                        </a>
+                                    </div>
                             </form>
                         </div>
                     </div>

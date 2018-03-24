@@ -15,7 +15,7 @@
 
 <div class="flex-center full-height col-lg-12 col-xs-12">
     <div class="content_homepage">
-        <img src="{{ asset('img/robot.png') }}" class="robot_img">
+        <img src="{{ asset('img/robot-status-ok.png') }}" class="robot_img">
         {!! Form::open(['id' => 'chatbot-form']) !!}
         <div class="square col-lg-12 col-xs-12">
             <div class="typewriter">

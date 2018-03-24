@@ -10,8 +10,6 @@ and open the template in the editor.
 
 .img_center{
     text-align: center;
-    margin-top: 2vh;
-    margin-bottom: 2vh;
 }
 
 .panel-heading{
@@ -21,3 +19,17 @@ and open the template in the editor.
     padding-right: 0px;
 }
 
+#page-wrapper{
+    min-height: auto!important;
+}
+.chat-panel .panel-body{
+    min-height: 460px!important;
+}
+
+.primary-font{
+    font-size: 18px;
+}
+
+.message{
+    font-size: 16px;
+}

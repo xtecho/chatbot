@@ -170,3 +170,8 @@ a.navbar-brand.logo-title{
     margin: auto;
     padding: auto;
 }
+
+.robot_img_login{
+    text-align: center;
+    margin-bottom: 10px;
+}

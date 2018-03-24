@@ -3,8 +3,8 @@
 @section('content')
 <link href="{{ asset('css/chat.css') }}" rel="stylesheet">
 <div id="page-wrapper">
-    <div class="img_center">
-        <img src="{{ asset('img/robot.png') }}" style="width: 15%;">
+    <div class="img_center" id="generate-img">
+        <img src="{{ asset('img/robot-status-ok.png') }}" style="width: 13%;">
     </div>
     <div class="chat-panel panel panel-default">
         <div class="panel-heading">
@@ -16,7 +16,7 @@
             <ul class="chat">
                 <li class="left clearfix hidden">
                     <span class="chat-img pull-left">
-                        <img src="http://placehold.it/50/55C1E7/fff" alt="User Avatar" class="img-circle">
+                        <img src="img/avatar-human.png" style="max-width: 50px;" alt="User Avatar" class="img-circle">
                     </span>
                     <div class="chat-body clearfix">
                         <div class="header">
@@ -33,7 +33,7 @@
                 </li>
                 <li class="right clearfix hidden">
                     <span class="chat-img pull-right">
-                        <img src="http://placehold.it/50/FA6F57/fff" alt="User Avatar" class="img-circle">
+                        <img src="img/robot-avatar.png" style="max-width: 50px;" alt="User Avatar" class="img-circle">
                     </span>
                     <div class="chat-body clearfix">
                         <div class="header">
