@@ -25,3 +25,9 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::post('/add-answer', 'AnswersController@insert')->name('add-answer');
+
+Route::prefix('/questions')->group(function () {
+    Route::get('', 'QuestionsController@show')->name('show-questions');
+    Route::get('/{question}', 'QuestionsController@getAnswers')->name('get-answers');
+    Route::post('/answer/{answer}', 'QuestionsController@editAnswer')->name('edit-answer');
+});

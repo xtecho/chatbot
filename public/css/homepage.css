@@ -175,3 +175,12 @@ a.navbar-brand.logo-title{
     text-align: center;
     margin-bottom: 10px;
 }
+
+.dataTable tbody > tr > td:last-of-type > span.fa {
+    cursor: pointer;
+}
+
+#edit-modal .save-answer, #edit-modal .add-answer {
+    cursor: pointer;
+    line-height: 34px;
+}

@@ -40,9 +40,11 @@ class AnswersController extends Controller {
                     }
                 }
                 $params = array();
-                $params['question'] = $request->input('answer');
+                $params['question'] = strtolower($request->input('answer'));
 
                 $question = Question::firstOrCreate($params);
+                $question->counter++;
+                $question->save();
 
                 $badwords = Badword::all()->pluck('word');
                 foreach ($badwords as $badword) {
@@ -86,11 +88,21 @@ class AnswersController extends Controller {
                                     $seachEngine = new LaravelGoogleCustomSearchEngine();
                                     $results = $seachEngine->getResults($params['question'], ['num' => 1]);
                                     //todo: swearing word to do
-                                    $answer = new Answer;
-                                    $answer->answer = explode('. ', $results[0]->htmlSnippet)[0] . '. ' . explode('. ', $results[0]->htmlSnippet)[1] . '.' .
-                                            "<br><a href='" . $results[0]->link . "' target='_blank'>Read more...</a>";
-                                    $answer->question_id = $question->id;
-                                    $answer->save();
+                                    if (!empty($results)) {
+                                        $answer = new Answer;
+                                        $answer->answer = explode('. ', $results[0]->htmlSnippet)[0];
+                                        if (isset(explode('. ', $results[0]->htmlSnippet)[1])) {
+                                            $answer->answer .= '. ' . explode('. ', $results[0]->htmlSnippet)[1] . '.';
+                                        }
+                                        $answer->answer .= "<br><a href='" . $results[0]->link . "' target='_blank'>Read more...</a>";
+                                        $answer->question_id = $question->id;
+                                    } else {
+                                        $answer = new Answer;
+                                        $answer->answer = "Even the internet doesn't know that...";
+                                        $answer->question_id = $question->id;
+
+                                        return json_encode(['answer' => $answer, 'question' => $question]);
+                                    }
                                 }
                             }
                         }

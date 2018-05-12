@@ -27,6 +27,8 @@
         <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
 
         <link href="{{ asset('css/homepage.css') }}" rel="stylesheet">
+        
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.css"/>
 
     </head>
 
@@ -89,7 +91,7 @@
                                 <a href="{{ route('chat') }}"><i class="fa fa-edit fa-fw"></i> Chat type</a>
                             </li>
                             <li>
-                                <a href="#"><i class="fa fa-edit fa-fw"></i> Teach the TechBot</a>
+                                <a href="{{ route('show-questions') }}"><i class="fa fa-edit fa-fw"></i> Teach the TechBot</a>
                             </li>
                         </ul>
                     </div>
@@ -120,6 +122,8 @@
         <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
         <script src="{{ asset('js/homepage.js') }}"></script>
         <script src="{{ asset('js/chat.js') }}"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.js"></script>
+        <script src="{{ asset('js/questions.js') }}"></script>
 
     </body>
 
