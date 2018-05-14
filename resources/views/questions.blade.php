@@ -15,10 +15,10 @@
         </thead>
         <tbody>
             @foreach($questions as $question)
-            <tr>
+            <tr data-id="{{ $question->id }}">
                 <td>{{ $question->id }}</td>
                 <td>{{ $question->question }}</td>
-                <td>{{ !empty($question->answers) ? $question->answers->count() : 0 }}</td>
+                <td class="answers">{{ !empty($question->answers) ? $question->answers->count() : 0 }}</td>
                 <td>{{ $question->counter }}</td>
                 <td class="text-center">
                     <span class="fa fa-pencil edit-question" data-id="{{ $question->id }}"></span>
@@ -41,7 +41,7 @@
                 <div class="modal-body"></div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    {{--<button type="button" class="btn btn-primary">Save changes</button>--}}
                 </div>
             </div>
         </div>

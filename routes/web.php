@@ -28,6 +28,9 @@ Route::post('/add-answer', 'AnswersController@insert')->name('add-answer');
 
 Route::prefix('/questions')->group(function () {
     Route::get('', 'QuestionsController@show')->name('show-questions');
+    Route::get('/delete/{question}', 'QuestionsController@deleteQuestion')->name('delete-question');
     Route::get('/{question}', 'QuestionsController@getAnswers')->name('get-answers');
+    Route::post('/answer/add', 'QuestionsController@addAnswer')->name('add-answer');
+    Route::get('/answer/delete/{answer}', 'QuestionsController@deleteAnswer')->name('delete-answer');
     Route::post('/answer/{answer}', 'QuestionsController@editAnswer')->name('edit-answer');
 });

@@ -30,6 +30,8 @@
         
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.css"/>
 
+        <link href="{{ asset('css/animate.css') }}" rel="stylesheet">
+
     </head>
 
     <body>
@@ -124,6 +126,7 @@
         <script src="{{ asset('js/chat.js') }}"></script>
         <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.js"></script>
         <script src="{{ asset('js/questions.js') }}"></script>
+        <script src="{{ asset('js/sweetalert2.all.js') }}"></script>
 
     </body>
 

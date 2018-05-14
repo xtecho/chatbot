@@ -53,12 +53,11 @@ html, body {
     margin-bottom: 30px;
 }
 
-button#back-button{
+button#back-button {
     margin: 10px;
 }
 
-
-/* DEMO-SPECIFIC STYLES 
+/* DEMO-SPECIFIC STYLES
 .typewriter h1 {
     width: 100%;
     color: #636b6f;
@@ -84,7 +83,7 @@ button#back-button{
     50% { border-color: orange }
 }*/
 
-a.navbar-brand.logo-title{
+a.navbar-brand.logo-title {
     font-size: 25px;
 }
 
@@ -93,13 +92,12 @@ a.navbar-brand.logo-title{
     height: auto;
     margin-top: 10px;
     padding-left: 10px;
-    text-align: initial!important;
+    text-align: initial !important;
     font-size: 20px;
-
 
 }
 
-.content_homepage{
+.content_homepage {
     text-align: center;
 }
 
@@ -107,71 +105,81 @@ a.navbar-brand.logo-title{
     text-align: left;
 }*/
 
-.typewriter{
+.typewriter {
     margin-top: 30px;
     margin-bottom: 10px;
 }
 
-.homepage_sending_button{
+.homepage_sending_button {
     height: 4vh;
 }
 
-.homepage_send_button{
+.homepage_send_button {
     height: 40px;
     font-size: 16px;
     margin-bottom: 5px;
     margin-left: 5px;
-    text-align: initial!important;
+    text-align: initial !important;
 }
 
-#answear_appearance{
+#answear_appearance {
     opacity: 0;
-    visibility:hidden;
+    visibility: hidden;
 }
 
-.pull-center{
+.pull-center {
     margin-top: 35px;
 }
 
-.typewriter h1{
-    width: 100%!important;
-    color: #636b6f; 
+.typewriter h1 {
+    width: 100% !important;
+    color: #636b6f;
     margin: 0 auto;
     white-space: nowrap;
     overflow: hidden;
     width: 18em;
-    animation: type 4s steps(80, end); 
+    animation: type 4s steps(80, end);
 }
 
-.write{
+.write {
     color: #5BC0DE;
     animation: blink 0.8s infinite;
     margin-bottom: 5px;
     font-size: 42px;
 }
 
-@keyframes type{ 
-    from { width: 0; } 
-} 
-
-@keyframes type2{
-    0%{width: 0;}
-    50%{width: 0;}
-    100%{ width: 100; } 
-} 
-
-@keyframes blink{
-    to{opacity: .0;}
+@keyframes type {
+    from {
+        width: 0;
+    }
 }
 
-.robot_img{
+@keyframes type2 {
+    0% {
+        width: 0;
+    }
+    50% {
+        width: 0;
+    }
+    100% {
+        width: 100;
+    }
+}
+
+@keyframes blink {
+    to {
+        opacity: .0;
+    }
+}
+
+.robot_img {
     width: 320px;
     height: auto;
     margin: auto;
     padding: auto;
 }
 
-.robot_img_login{
+.robot_img_login {
     text-align: center;
     margin-bottom: 10px;
 }
@@ -180,7 +188,12 @@ a.navbar-brand.logo-title{
     cursor: pointer;
 }
 
-#edit-modal .save-answer, #edit-modal .add-answer {
+#edit-modal .fa {
     cursor: pointer;
     line-height: 34px;
+    margin-right: 5px;
+}
+
+.dataTable thead tr th:after{
+    display: none;
 }
