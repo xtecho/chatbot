@@ -197,3 +197,7 @@ a.navbar-brand.logo-title {
 .dataTable thead tr th:after{
     display: none;
 }
+
+.dataTables_wrapper{
+    margin-top: 10px;
+}
