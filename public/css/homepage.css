@@ -201,3 +201,32 @@ a.navbar-brand.logo-title {
 .dataTables_wrapper{
     margin-top: 10px;
 }
+
+@media (max-width: 426px){
+    .flex-center
+    {
+        display: block!important;
+    }
+    .answear_input input[type="text"]{
+        width: 100%!important;
+    }
+    #generate-img img{
+    width: 45%!important;
+    }
+
+
+    .typewriter h1{
+        font-size: 17px!important;
+        overflow: auto!important;
+    }
+
+    .robot_img{
+        width: 200px!important;
+    }
+    .write{
+        font-size: 20px!important;
+    }
+    .dropdown-menu{
+        position: relative!important;
+    }
+}
