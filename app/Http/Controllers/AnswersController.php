@@ -12,9 +12,11 @@ use Gmopx\LaravelOWM\LaravelOWM;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
 
-class AnswersController extends Controller {
+class AnswersController extends Controller
+{
 
-    public function insert(Request $request) {
+    public function insert(Request $request)
+    {
         if ($request->input('type') == 'answer') {
             $params = array();
             $params['answer'] = $request->input('answer');
@@ -67,8 +69,14 @@ class AnswersController extends Controller {
                                 if ($word == 'weather') {
                                     if ($words[$key + 1] == 'in') {
                                         $country = explode('?', $words[$key + 2])[0];
+                                        if (isset($words[$key + 3]) AND $words[$key + 3]) {
+                                            $country .= ' ' . explode('?', $words[$key + 3])[0];
+                                        }
                                     } else {
                                         $country = explode('?', $words[$key + 1])[0];
+                                        if (isset($words[$key + 2]) AND $words[$key + 2]) {
+                                            $country .= ' ' . explode('?', $words[$key + 2])[0];
+                                        }
                                     }
                                 }
                             }

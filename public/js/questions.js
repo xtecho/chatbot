@@ -1,6 +1,6 @@
 $(document).ready(function () {
     var questions_datatable = $('#questions-datatable').DataTable({
-        "initComplete": function(settings, json) {
+        "initComplete": function (settings, json) {
             questionsDatatableButtons();
         }
     }).on('draw.dt initCompleteSince', function () {
@@ -26,7 +26,7 @@ function questionsDatatableButtons() {
 
                 var html = "";
                 $.each(response.answers, function (key, answer) {
-                    html += "<div class='row form-group'><div class='col-xs-10'><input class='form-control' type='text' value='" + answer.answer + "'></div><span class='fa fa-check-square-o fa-2x save-answer' data-id='" + answer.id + "'></span><span class='fa fa-remove fa-2x delete-answer' data-id='" + answer.id + "'></span></div>";
+                    html += "<div class='row form-group'><div class='col-xs-10'><input class='form-control' type='text' value='" + htmlspecialchars(answer.answer) + "'></div><span class='fa fa-check-square-o fa-2x save-answer' data-id='" + answer.id + "'></span><span class='fa fa-remove fa-2x delete-answer' data-id='" + answer.id + "'></span></div>";
                 });
 
                 html += "<div class='row form-group text-center'><span class='fa fa-plus-square fa-4x add-answer'></span></div><div class='clearfix'></div><input id='question_id' type='hidden' value='" + response.question.id + "'>";
@@ -274,6 +274,17 @@ function questionsDatatableButtons() {
             }
         });
     }).addClass('visited');
+}
+
+function htmlspecialchars(str) {
+    if (typeof(str) === "string") {
+        str = str.replace(/&/g, "&amp;");
+        str = str.replace(/"/g, "&quot;");
+        str = str.replace(/'/g, "&#039;");
+        str = str.replace(/</g, "&lt;");
+        str = str.replace(/>/g, "&gt;");
+    }
+    return str;
 }
 
 
