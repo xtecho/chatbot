@@ -16,8 +16,6 @@ class AnswersController extends Controller {
 
     public function insert(Request $request) {
         if ($request->input('type') == 'answer') {
-            $answer = new Answer;
-
             $params = array();
             $params['answer'] = $request->input('answer');
             $params['question_id'] = empty($request->input('question_id')) ? 1 : $request->input('question_id');

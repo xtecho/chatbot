@@ -22,7 +22,7 @@ function questionsDatatableButtons() {
             processData: false,
             dataType: 'json',
             success: function (response) {
-                edit_modal.find('.modal-header .modal-title').html('Edit Answers for question: "' + response.question.question);
+                edit_modal.find('.modal-header .modal-title').html('Edit Answers for question: <strong>' + response.question.question + '</strong>');
 
                 var html = "";
                 $.each(response.answers, function (key, answer) {
@@ -105,45 +105,49 @@ function questionsDatatableButtons() {
 
 
                     element.find('.delete-answer').on('click', function () {
-                        swal({
-                            title: 'Are you sure?',
-                            text: "You won't be able to revert this!",
-                            type: 'warning',
-                            showCancelButton: true,
-                            confirmButtonColor: '#3085d6',
-                            cancelButtonColor: '#d33',
-                            confirmButtonText: 'Yes, delete it!'
-                        }).then((result) => {
-                            if (result.value) {
-                                let id = $(this).attr('data-id');
-                                let _this = this;
-                                $.ajax({
-                                    url: '/questions/answer/delete/' + id,
-                                    type: 'GET',
-                                    headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-                                    data: {
-                                        answer: $(this).parent().find('input').val()
-                                    },
-                                    success: function (response) {
-                                        swal({
-                                            title: 'Success!',
-                                            html: 'Answer was deleted!',
-                                            type: 'success',
-                                            showConfirmButton: false,
-                                            timer: 1500,
-                                            customClass: 'animated tada'
-                                        });
-                                        $(_this).closest('.form-group').remove();
+                        if ($(this).attr('data-id').length === 0) {
+                            $(this).closest('.form-group').remove();
+                        } else {
+                            swal({
+                                title: 'Are you sure?',
+                                text: "You won't be able to revert this!",
+                                type: 'warning',
+                                showCancelButton: true,
+                                confirmButtonColor: '#3085d6',
+                                cancelButtonColor: '#d33',
+                                confirmButtonText: 'Yes, delete it!'
+                            }).then((result) => {
+                                if (result.value) {
+                                    let id = $(this).attr('data-id');
+                                    let _this = this;
+                                    $.ajax({
+                                        url: '/questions/answer/delete/' + id,
+                                        type: 'GET',
+                                        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                                        data: {
+                                            answer: $(this).parent().find('input').val()
+                                        },
+                                        success: function (response) {
+                                            swal({
+                                                title: 'Success!',
+                                                html: 'Answer was deleted!',
+                                                type: 'success',
+                                                showConfirmButton: false,
+                                                timer: 1500,
+                                                customClass: 'animated tada'
+                                            });
+                                            $(_this).closest('.form-group').remove();
 
-                                        var answers_td = $('#questions-datatable').find("tr[data-id='" + response.answer.question_id + "'] td.answers");
-                                        answers_td.html(parseInt(answers_td.html()) - 1);
-                                    },
-                                    error: function (response) {
+                                            var answers_td = $('#questions-datatable').find("tr[data-id='" + response.answer.question_id + "'] td.answers");
+                                            answers_td.html(parseInt(answers_td.html()) - 1);
+                                        },
+                                        error: function (response) {
 
-                                    }
-                                });
-                            }
-                        });
+                                        }
+                                    });
+                                }
+                            });
+                        }
                     });
                 });
 

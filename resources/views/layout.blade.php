@@ -87,14 +87,19 @@
                     <div class="sidebar-nav navbar-collapse">
                         <ul class="nav" id="side-menu">
                             <li>
-                                <a href="{{ route('dashboard') }}"><i class="fa fa-dashboard fa-fw"></i> Question by Question type</a>
+                                <a href="{{ route('dashboard') }}"><i class="fa fa-question fa-fw"></i> Question by Question type</a>
                             </li>
                             <li>
-                                <a href="{{ route('chat') }}"><i class="fa fa-edit fa-fw"></i> Chat type</a>
+                                <a href="{{ route('chat') }}"><i class="fa fa-comments-o fa-fw"></i> Chat type</a>
                             </li>
                             <li>
-                                <a href="{{ route('show-questions') }}"><i class="fa fa-edit fa-fw"></i> Teach the TechBot</a>
+                                <a href="{{ route('teach') }}"><i class="fa fa-graduation-cap fa-fw"></i> Teach the TechBot</a>
                             </li>
+                            @if(Auth::user()->admin)
+                            <li>
+                                <a href="{{ route('show-questions') }}"><i class="fa fa-edit fa-fw"></i> Question Management</a>
+                            </li>
+                                @endif
                         </ul>
                     </div>
                     <!-- /.sidebar-collapse -->
