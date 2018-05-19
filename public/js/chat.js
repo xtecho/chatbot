@@ -1,51 +1,47 @@
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 $('#chat-form').submit(function (e) {
     e.preventDefault();
 
     function changeSource0() {
-        var image = document.querySelectorAll("img")[0];
-        var source = image.src = image.src.replace("robot-status-ok.png", "robot-status-wrong.png");     //replace robot emotions images
+        let image = document.querySelectorAll("#generate-img > img")[0];
+        image.src = "/img/robot-status-wrong.png";     //replace robot emotions images
     }
     
     function changeSource1() {
-        var image = document.querySelectorAll("img")[0];
-        var source = image.src = image.src.replace("robot-status-wrong.png", "robot-status-happy.png");     //replace robot emotions images
+        let image = document.querySelectorAll("#generate-img > img")[0];
+        image.src = "/img/robot-status-happy.png";     //replace robot emotions images
     }
-    
+
     function changeSource2() {
-        var image = document.querySelectorAll("img")[0];
-        var source = image.src = image.src.replace("robot-status-wrong.png", "robot-status-happy.png");     //replace robot emotions images
-    }
-    
-    function changeSource3() {
-        var image = document.querySelectorAll("img")[0];
-        var source = image.src = image.src.replace("robot-status-ok.png", "robot-status-angry.png");     //replace robot emotions images
+        let image = document.querySelectorAll("#generate-img > img")[0];
+        image.src = "/img/robot-status-angry.png";     //replace robot emotions images
     }
 
     var question = $(this).find('input#question')[0].value;
 
     if (question.length) {
+        // daca intrebarea nu are un string gol
         var chat = $("ul.chat");
         var left = chat.find("li.left.hidden").clone();
         var right = chat.find("li.right.hidden").clone();
 
+        // se genereaza html-ul pentru componenta din stanga cu ora curenta
         left.find('.message')[0].innerHTML = question;
         left.find('.time')[0].innerHTML = new Date().toLocaleTimeString();
+        // se adauga mesajul la chat
         left.appendTo("ul.chat").removeClass('hidden');
 
+        // se genereaza html-ul pentru componenta din dreapta cu ora curenta
 //        right.find('.message')[0].innerHTML = "Is typing...";
         right.find('.message')[0].innerHTML = "<img src='/img/loader.gif' style='width: 60px; height: auto'>";
         right.find('.time')[0].innerHTML = "";
         right.find('.time').parent()[0].style = 'visibility: hidden';
+        // se adauga mesajul la chat
         right.appendTo("ul.chat").removeClass('hidden');
 
+        // se deruleaza chatul la ultimul mesaj
         $('.chat').parent()[0].scrollTop = $('.chat').parent()[0].scrollHeight;
 
+        // trimite prin AJAX request de tip POST datele din formular
         $.ajax({
             url: '/add-answer',
             type: 'POST',
@@ -56,14 +52,22 @@ $('#chat-form').submit(function (e) {
             processData: false,
             dataType: 'json',
             success: function (response) {
+                // dupa ce se proceseaza informatiile si se gaseste sau nu raspunsul se afiseaza raspunsul si se schimba imaginea dupa o perioada la intamplare
                 setTimeout(function () {
                     if (response['answer'] !== null) {
+                        // daca gaseste raspunsul atunci se afiseaza in chat
                         right.find('.message')[0].innerHTML = response['answer'].answer;
-                        changeSource1();
+                        if(response['answer'].answer === "Even the internet doesn't know that...") {
+                            changeSource2();
+                        } else {
+                            changeSource1();
+                        }
                     } else {
+                        // daca nu gaseste raspuns se afiseaza un mesaj predefinit si se schimba imaginea
                         right.find('.message')[0].innerHTML = "I don't know...";
                         changeSource0();
                     }
+                    // se adauga timpul cand a raspuns
                     right.find('.time').parent()[0].style = 'visibility: visible';
                     right.find('.time')[0].innerHTML = new Date().toLocaleTimeString();
 
@@ -78,6 +82,3 @@ $('#chat-form').submit(function (e) {
         $('#chat-form').find('input#question')[0].value = "";
     }
 });
-
-
-
