@@ -19,7 +19,7 @@ if ($("#answear_appearance").attr('data-type') === "question") {
 $('#chatbot-form').submit(function (e) {
     e.preventDefault();
 
-    if($('#answer-input').val().length) {
+    if ($('#answer-input').val().length) {
         // daca inputul nu este gol se face un request AJAX cu toate valorile elementelor din formular
         $.ajax({
             url: '/add-answer',
@@ -101,21 +101,30 @@ $('#chatbot-form').submit(function (e) {
                         document.getElementById('answear_appearance').style.opacity = "0";
                         question_square.find('input#type')[0].value = "question";
 
-                        question_square.animate({"opacity": "1"}, 500, function () {
-                            var html = "<div class='typewriter'><h1>You can ask me 3 questions. Go for it!<span class='write'>|</span></h1></div>";
-                            question_square.prepend(html);
+                        var guest = $('input#guest').val();
 
-                            setTimeout(function () {
-                                question_square.animate({"opacity": "0"}, 500, function () {
-                                    question_square.find('.typewriter')[0].style.display = "none";
+                        if (guest) {
+                            question_square.animate({"opacity": "1"}, 500, function () {
+                                var html = "<div class='typewriter'><h1>You can ask me 3 questions. Go for it!<span class='write'>|</span></h1></div>";
+                                question_square.prepend(html);
 
-                                    question_square.animate({"opacity": "1"}, 300, function () {
-                                        $("#answear_appearance").animate({"opacity": "1"}, 1200);
-                                        document.getElementById('answear_appearance').style.visibility = "visible";
+                                setTimeout(function () {
+                                    question_square.animate({"opacity": "0"}, 500, function () {
+                                        question_square.find('.typewriter')[0].style.display = "none";
+
+                                        question_square.animate({"opacity": "1"}, 300, function () {
+                                            $("#answear_appearance").animate({"opacity": "1"}, 1200);
+                                            document.getElementById('answear_appearance').style.visibility = "visible";
+                                        });
                                     });
-                                });
-                            }, 5000);
-                        });
+                                }, 5000);
+                            });
+                        } else {
+                            question_square.animate({"opacity": "1"}, 300, function () {
+                                $("#answear_appearance").animate({"opacity": "1"}, 1200);
+                                document.getElementById('answear_appearance').style.visibility = "visible";
+                            });
+                        }
                     });
                 }
 
@@ -131,7 +140,7 @@ $('#teach-form').submit(function (e) {
     e.preventDefault();
 
     // daca inputul de raspuns nu este gol
-    if($(this).find('input#answer-input').val().length) {
+    if ($(this).find('input#answer-input').val().length) {
         let _this = this;
         // se face un request AJAX pentru adaugare a raspunsului
         $.ajax({

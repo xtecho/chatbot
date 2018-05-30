@@ -36,6 +36,7 @@
 
 <body>
 <div id="wrapper">
+    <input type="hidden" name="guest" id="guest" value="{{ Auth::guest() }}">
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
 
